@@ -1,6 +1,9 @@
 [submodule "production-planner-frontend"]
 	path = production-planner-frontend
 	url = https://github.com/Avrooid/production-planner-frontend
-[submodule "production-planner-backend"]
-	path = production-planner-backend
-	url = https://github.com/Krayseer/production-planner-backend
+[submodule "production-planner-storage"]
+	path = production-planner-storage
+	url = https://github.com/Krayseer/production-planner-storage
+[submodule "production-planner-optimizer"]
+	path = production-planner-optimizer
+	url = https://github.com/sdobrimutrom/production_planner

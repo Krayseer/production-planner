@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  ui:
+    build:
+      context: ./production-planner-frontend
+      dockerfile: Dockerfile
+    container_name: ui
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+      - optimizer
+    restart: always
+
+  backend:
+    build:
+      context: ./production-planner-storage
+      dockerfile: Dockerfile
+    container_name: backend
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    restart: always
+
+  optimizer:
+    build:
+      context: ./production-planner-optimizer
+      dockerfile: Dockerfile
+    container_name: optimizer
+    ports:
+      - "8000:8000"
+    restart: always
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_DB: production_planner
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    restart: always
